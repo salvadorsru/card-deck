@@ -98,7 +98,7 @@ class CardDeck extends HTMLElement {
 
         this.$actualCard.classList.add(goRight ? "go-right" : "go-left", goDown ? "go-down" : "go-up");
 
-        this.dispatchEvent(new CustomEvent("discard", { bubbles: true, detail: { goRight, goDown, element: this.$actualCard } }));
+        this.dispatchEvent(new CustomEvent("discard", { bubbles: true, detail: { goRight, goDown, card: this.$actualCard } }));
 
         this.$actualCard.addEventListener("transitionend", () => {
             this.$actualCard?.remove();
