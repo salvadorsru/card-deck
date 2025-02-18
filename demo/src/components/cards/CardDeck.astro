@@ -1,0 +1,25 @@
+---
+import "@/public/css/style.min.css";
+---
+
+<card-deck>
+    <slot />
+</card-deck>
+
+<script>
+    import "@/public/js/index.min.js";
+</script>
+
+<style>
+    card-deck {
+        --card-width: 220px;
+        --card-height: 285px;
+    }
+</style>
+
+<style is:inline>
+    card-deck > :last-child {
+        border-radius: 10px;
+        border: 1px solid var(--card-border, red) !important;
+    }
+</style>

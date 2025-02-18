@@ -1,0 +1,29 @@
+---
+import "@/src/styles/global.css";
+---
+
+<!doctype html>
+<html lang="en" class="scheme-dark">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro Basics</title>
+	</head>
+	<body
+		class="grid place-items-center place-content-center overflow-x-hidden text-white"
+	>
+		<slot />
+	</body>
+</html>
+
+<style>
+	html,
+	body {
+		padding-block: 7.5rem;
+		margin: 0;
+		width: 100%;
+		min-height: 100dvh;
+	}
+</style>

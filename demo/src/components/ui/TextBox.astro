@@ -1,0 +1,9 @@
+---
+const { class: _class } = Astro.props;
+---
+
+<div
+    class:list={{ "prose bg-stone-950 p-6 rounded-xl max-w-2xl": true, _class }}
+>
+    <slot />
+</div>

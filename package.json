@@ -1,0 +1,42 @@
+{
+  "name": "@salvadorsru/card-deck",
+  "version": "0.0.1",
+  "author": "@salvadorsru",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/salvadorsru/card-deck.git"
+  },
+  "main": "dist/index.min.js",
+  "devDependencies": {
+    "esbuild": "0.24.0"
+  },
+  "bugs": {
+    "url": "https://github.com/salvadorsru/card-deck/issues"
+  },
+  "description": "Simple Web Component that animates card swipes similar to Tinder's effect.",
+  "files": [
+    "dist/index.min.js",
+    "dist/style.min.css"
+  ],
+  "homepage": "https://github.com/salvadorsru/card-deck#readme",
+  "keywords": [
+    "card",
+    "draggable",
+    "swipe",
+    "tinder",
+    "web-component",
+    "component",
+    "custom-element",
+    "vanilla"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "dry:publish": "node ./src/build.js && npm pack --dry-run",
+    "publish": "node ./src/build.js && npm publish",
+    "dev": "node --watch-path=./src/component/index.js --watch-path=./src/component/style.css --watch ./src/build.js",
+    "build": "node ./src/build.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "style": "dist/style.min.css",
+  "type": "module"
+}

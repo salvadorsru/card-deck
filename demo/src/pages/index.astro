@@ -1,0 +1,157 @@
+---
+import CardDeck from "@/src/components/cards/CardDeck.astro";
+import Layout from "@/src/layouts/Layout.astro";
+import APicas from "@/src/components/cards/APicas.astro";
+import DosPicas from "@/src/components/cards/DosPicas.astro";
+import NueveDiamantes from "@/src/components/cards/NueveDiamantes.astro";
+import QTrevoles from "@/src/components/cards/QTrevoles.astro";
+import SeisCorazones from "@/src/components/cards/SeisCorazones.astro";
+import HandIcon from "@/src/components/icons/HandIcon.astro";
+import TextBox from "@/src/components/ui/TextBox.astro";
+---
+
+<Layout>
+	<div class="prose text-center mb-10">
+		<h1>Card Deck<br />Web Component</h1>
+
+		<div>
+			<h3>Simple swappable card deck</h3>
+		</div>
+	</div>
+
+	<HandIcon />
+
+	<CardDeck>
+		<div>
+			<APicas />
+		</div>
+		<div>
+			<DosPicas />
+		</div>
+		<div>
+			<NueveDiamantes />
+		</div>
+		<div>
+			<QTrevoles />
+		</div>
+		<div>
+			<SeisCorazones />
+		</div>
+	</CardDeck>
+
+	<section class="mt-12">
+		<TextBox>
+			<h2>How to use</h2>
+			<p>
+				An event called <em>discard</em> is triggered from the <span
+					set:text={"<card-desk>"}
+				/> component when a card is removed from the deck.
+			</p>
+
+			<p>
+				The event in its detail includes the direction in which the card
+				has been removed and the full reference to the HTML element.
+			</p>
+			<p>You must set a card <em>width</em> and <em>height</em></p>
+			<div
+				class="shadow p-4 bg-black border-[1px] border-stone-900 rounded-xl"
+			>
+				<span
+					class="block"
+					set:text={'<card-desk style="--card-width: 220px; --card-height: 285px">'}
+				/>
+				<span
+					class="block pl-6"
+					set:text={"<div></div> // Card Container"}
+				/>
+				<span
+					class="block pl-6"
+					set:text={"<div></div> // Card Container"}
+				/>
+				<span class="block" set:text={"</card-desk>"} />
+			</div>
+
+			<hr />
+
+			<section class="grid sm:grid-cols-2 gap-4">
+				<h2 class="mt-0 col-span-full">CSS Variables</h2>
+				<div>
+					<h4 class="mt-0">Card</h4>
+					<ul class="list-none italic">
+						<li>--card-width</li>
+						<li>--card-height</li>
+						<li>--card-aspect-ratio</li>
+					</ul>
+				</div>
+				<div>
+					<h4 class="mt-0">Attributes</h4>
+					<ul class="list-none italic">
+						<li>data-threshold</li>
+					</ul>
+				</div>
+				<div>
+					<h4 class="mt-0">Animations</h4>
+					<ul class="list-none italic">
+						<li>--card-go-left</li>
+						<li>--card-go-right</li>
+						<li>--transition-time</li>
+						<li>--transition-opacity</li>
+						<li>--transition-rotation</li>
+					</ul>
+				</div>
+				<div>
+					<h4 class="mt-0">During drag classes</h4>
+					<ul class="list-none italic">
+						<li>.dragged</li>
+						<li>.to-left</li>
+						<li>.to-right</li>
+						<li>.to-top</li>
+						<li>.to-bottom</li>
+					</ul>
+				</div>
+			</section>
+		</TextBox>
+	</section>
+</Layout>
+
+<style is:inline>
+	card-deck > div {
+		display: grid;
+		place-content: center;
+		place-items: center;
+	}
+
+	card-deck .to-left::after {
+		content: "DISCARD";
+		font-weight: bold;
+		position: absolute;
+		display: flex;
+		place-content: center;
+		place-items: center;
+		margin: auto;
+		inset: 0;
+		font-size: 2rem;
+		background-color: rgb(255 0 0 / 0.85);
+		padding: 10px;
+		border-radius: 10px;
+	}
+
+	card-deck:has(.to-right) {
+		--card-border: rgb(0 255 0 / 1);
+	}
+
+	card-deck .to-right::after {
+		content: "GO";
+		font-weight: bold;
+		position: absolute;
+		display: flex;
+		place-content: center;
+		place-items: center;
+		margin: auto;
+		inset: 0;
+		font-size: 2rem;
+		background-color: rgb(0 255 0 / 0.85);
+		padding: 10px;
+		border-radius: 10px;
+	}
+</style>
