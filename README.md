@@ -1,6 +1,6 @@
 # Card Deck Web Component
 
-## [Live Demo](https://searchable-select.vercel.app/)
+## [Live Demo](https://swipeable-card-deck.vercel.app/)
 
 ## CSS Variables for `card-deck`
 
@@ -19,10 +19,20 @@ The `card-deck` component supports various CSS variables to allow customization 
 ### Behavior
 - Cards move left or right with the `.go-left` and `.go-right` classes.
 - The `.reset` class resets the card's position.
-- Card moves it will have a class with the adjective `.dragged` and depending on position `.to-left`, `.to-right`, `.to-top`, `.to-bottom`.
+- Card moves it will have a class with the adjective `.dragged`. Depending on its direction, it also gets one of the following classes `.to-left`, `.to-right`, `.to-top`, `.to-bottom`.
 
 These variables allow flexibility in adjusting the appearance and behavior of the card deck without modifying the core CSS.
 
+### Events
+
+The `card-deck` component emits a custom event named discard whenever a card is removed from the deck.
+
+**Triggered By**: The <card-deck> component when a card is removed.
+
+#### Event Detail Properties:
+- *goRight* (boolean): true if the card was discarded to the right, false if to the left.
+- *goDown* (boolean): true if the card was discarded downward, false if upward.
+- *card* (HTMLElement): A reference to the removed card's HTML element.
 
 ## CSS and Component Import
 
