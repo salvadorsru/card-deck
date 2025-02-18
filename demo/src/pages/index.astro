@@ -21,23 +21,28 @@ import TextBox from "@/src/components/ui/TextBox.astro";
 
 	<HandIcon />
 
-	<CardDeck>
-		<div>
-			<APicas />
-		</div>
-		<div>
-			<DosPicas />
-		</div>
-		<div>
-			<NueveDiamantes />
-		</div>
-		<div>
-			<QTrevoles />
-		</div>
-		<div>
-			<SeisCorazones />
-		</div>
-	</CardDeck>
+	<div class="relative grid place-content-center place-items-center">
+		<span class="absolute flex m-auto font-bold text-[18px]"
+			>No more cards :(</span
+		>
+		<CardDeck>
+			<div>
+				<APicas />
+			</div>
+			<div>
+				<DosPicas />
+			</div>
+			<div>
+				<NueveDiamantes />
+			</div>
+			<div>
+				<QTrevoles />
+			</div>
+			<div>
+				<SeisCorazones />
+			</div>
+		</CardDeck>
+	</div>
 
 	<section class="mt-12">
 		<TextBox>
