@@ -7,6 +7,8 @@ import NueveDiamantes from "@/src/components/cards/NueveDiamantes.astro";
 import QTrevoles from "@/src/components/cards/QTrevoles.astro";
 import SeisCorazones from "@/src/components/cards/SeisCorazones.astro";
 import HandIcon from "@/src/components/icons/HandIcon.astro";
+import GitHubIcon from "@/src/components/icons/GitHubIcon.astro";
+import NPMIcon from "@/src/components/icons/NPMIcon.astro";
 import TextBox from "@/src/components/ui/TextBox.astro";
 ---
 
@@ -43,6 +45,25 @@ import TextBox from "@/src/components/ui/TextBox.astro";
 				<SeisCorazones />
 			</div>
 		</CardDeck>
+	</div>
+
+	<div class="grid md:grid-cols-2 gap-12 mt-12">
+		<a
+			class="font-bold hover:underline text-xl flex gap-2 items-center"
+			href="https://github.com/salvadorsru/card-deck"
+			target="_blank"
+		>
+			<GitHubIcon />
+			Go to Github
+		</a>
+		<a
+			class="font-bold hover:underline text-xl flex gap-2 items-center"
+			href="https://www.npmjs.com/package/@salvadorsru/card-deck"
+			target="_blank"
+		>
+			<NPMIcon />
+			Go to NPM
+		</a>
 	</div>
 
 	<section class="mt-12">
