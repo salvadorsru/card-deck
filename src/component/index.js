@@ -9,22 +9,28 @@ class CardDeck extends HTMLElement {
 
     constructor() {
         super();
+        this.startDrag = this.startDrag.bind(this);
+        this.onMove = this.onMove.bind(this);
+        this.onEnd = this.onEnd.bind(this);
         this.start();
     }
 
     start() {
-        this.decision_threshold = Number(this.dataset.threshold ?? 75)
+        this.decision_threshold = Number(this.dataset.threshold ?? 75);
         this.addEventListener("mousedown", this.startDrag);
-        this.addEventListener("touchstart", this.startDrag, { passive: true });
+        this.addEventListener("touchstart", this.startDrag, { passive: false });
     }
 
     startDrag(event) {
+        event.stopPropagation();
+        event.preventDefault();
         if (this.isAnimating) return;
-        this.$actualCard = this.lastElementChild
+
+        this.$actualCard = this.lastElementChild;
         if (!this.$actualCard) return;
+
         this.setCoords(event);
         this.addListeners();
-        document.body.style.overflowX = "hidden"; // Bloquear scroll horizontal
     }
 
     setCoords(event) {
@@ -33,14 +39,17 @@ class CardDeck extends HTMLElement {
     }
 
     getCoord(event, axis) {
-        return event instanceof TouchEvent ? event.touches[0][`page${axis}`] : event[`page${axis}`];
+        if (typeof TouchEvent !== 'undefined' && event instanceof TouchEvent) {
+            return event.touches[0][`page${axis}`];
+        }
+        return event[`page${axis}`];
     }
 
     addListeners() {
-        this.addEventListener("mousemove", this.onMove);
-        this.addEventListener("touchmove", this.onMove, { passive: true });
-        this.addEventListener("mouseup", this.onEnd);
-        this.addEventListener("touchend", this.onEnd, { passive: true });
+        document.addEventListener("mousemove", this.onMove);
+        document.addEventListener("mouseup", this.onEnd);
+        document.addEventListener("touchmove", this.onMove, { passive: false });
+        document.addEventListener("touchend", this.onEnd, { passive: true });
     }
 
     onMove(event) {
@@ -54,7 +63,7 @@ class CardDeck extends HTMLElement {
 
         if (!this.$actualCard) return;
 
-        this.$actualCard.classList.add('dragged')
+        this.$actualCard.classList.add('dragged');
         this.$actualCard.classList.toggle('to-left', this.pullDeltaX <= 0);
         this.$actualCard.classList.toggle('to-right', this.pullDeltaX >= 0);
         this.$actualCard.classList.toggle('to-top', this.pullDeltaY <= 0);
@@ -67,8 +76,7 @@ class CardDeck extends HTMLElement {
     onEnd() {
         this.removeListeners();
 
-        this.$actualCard.classList.remove('dragged')
-        document.body.style.overflowX = ""; // Restaurar scroll horizontal
+        this.$actualCard.classList.remove('dragged');
 
         const decisionMade =
             Math.abs(this.pullDeltaX) >= this.decision_threshold ||
@@ -86,10 +94,10 @@ class CardDeck extends HTMLElement {
     }
 
     removeListeners() {
-        this.removeEventListener("mousemove", this.onMove);
-        this.removeEventListener("mouseup", this.onEnd);
-        this.removeEventListener("touchmove", this.onMove);
-        this.removeEventListener("touchend", this.onEnd);
+        document.removeEventListener("mousemove", this.onMove);
+        document.removeEventListener("mouseup", this.onEnd);
+        document.removeEventListener("touchmove", this.onMove);
+        document.removeEventListener("touchend", this.onEnd);
     }
 
     applyCardDecision() {
