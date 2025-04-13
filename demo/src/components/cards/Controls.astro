@@ -1,0 +1,31 @@
+<div class="flex gap-4 justify-center mt-6">
+  <button
+    id="discard-to-left"
+    class="bg-red-500 active:bg-red-800 font-bold cursor-pointer !text-black px-4 py-2 rounded-2xl shadow-md transition-colors focus:outline-none focus:ring-2"
+  >
+    Discard to left
+  </button>
+  <button
+    id="discard-to-right"
+    class="bg-lime-500 active:bg-lime-800 font-bold cursor-pointer !text-black px-4 py-2 rounded-2xl shadow-md transition-colors focus:outline-none focus:ring-2"
+  >
+    Discard to right
+  </button>
+</div>
+
+<script>
+  import { discardToLeft, discardToRight } from "@/public/js/emulate.min.mjs";
+
+  const $discardToleft = document.querySelector("#discard-to-left");
+  const $discardToRight = document.querySelector("#discard-to-right");
+  const $card = document.querySelector("card-deck");
+
+  $discardToleft?.addEventListener("click", () => {
+    console.log("discard to left");
+    discardToLeft($card);
+  });
+
+  $discardToRight?.addEventListener("click", () => {
+    discardToRight($card);
+  });
+</script>

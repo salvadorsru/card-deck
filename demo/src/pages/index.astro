@@ -10,192 +10,117 @@ import HandIcon from "@/src/components/icons/HandIcon.astro";
 import GitHubIcon from "@/src/components/icons/GitHubIcon.astro";
 import NPMIcon from "@/src/components/icons/NPMIcon.astro";
 import TextBox from "@/src/components/ui/TextBox.astro";
+import Controls from "@/src/components/cards/Controls.astro";
+import Documentation from "@/src/components/content/documentation.md";
 ---
 
 <Layout>
-	<div class="prose text-center mb-10">
-		<h1>Card Deck<br />Web Component</h1>
+  <div class="prose text-center mb-10">
+    <h1>Card Deck<br />Web Component</h1>
 
-		<div>
-			<h3>Simple swappable card deck</h3>
-		</div>
-	</div>
+    <div>
+      <h3>Simple swappable card deck</h3>
+    </div>
+  </div>
 
-	<HandIcon />
+  <HandIcon />
 
-	<div class="relative grid place-content-center place-items-center">
-		<span
-			class="absolute flex m-auto font-bold text-[18px] border border-stone-500 w-full h-full justify-center items-center rounded-[10px] border-dashed"
-			>No more cards :(</span
-		>
-		<CardDeck>
-			<div>
-				<APicas />
-			</div>
-			<div>
-				<DosPicas />
-			</div>
-			<div>
-				<NueveDiamantes />
-			</div>
-			<div>
-				<QTrevoles />
-			</div>
-			<div>
-				<SeisCorazones />
-			</div>
-		</CardDeck>
-	</div>
+  <div class="relative grid place-content-center place-items-center">
+    <span
+      class="absolute flex m-auto font-bold text-[18px] border border-stone-500 w-full h-full justify-center items-center rounded-[10px] border-dashed"
+      >No more cards :(</span
+    >
+    <CardDeck>
+      <div>
+        <APicas />
+      </div>
+      <div>
+        <DosPicas />
+      </div>
+      <div>
+        <NueveDiamantes />
+      </div>
+      <div>
+        <QTrevoles />
+      </div>
+      <div>
+        <SeisCorazones />
+      </div>
+    </CardDeck>
+  </div>
 
-	<div class="grid md:grid-cols-2 gap-12 mt-12">
-		<a
-			class="font-bold hover:underline text-xl flex gap-2 items-center"
-			href="https://github.com/salvadorsru/card-deck"
-			target="_blank"
-		>
-			<GitHubIcon />
-			Go to Github
-		</a>
-		<a
-			class="font-bold hover:underline text-xl flex gap-2 items-center"
-			href="https://www.npmjs.com/package/@salvadorsru/card-deck"
-			target="_blank"
-		>
-			<NPMIcon />
-			Go to NPM
-		</a>
-	</div>
+  <Controls />
 
-	<section class="mt-12">
-		<TextBox>
-			<h2>How to use</h2>
-			<p>
-				An event named <em>discard</em> is triggered by the <span
-					set:text={"<card-desk>"}
-				/> component when a card is removed from the deck.
-			</p>
+  <div class="grid md:grid-cols-2 gap-12 mt-12">
+    <a
+      class="font-bold hover:underline text-xl flex gap-2 items-center"
+      href="https://github.com/salvadorsru/card-deck"
+      target="_blank"
+    >
+      <GitHubIcon />
+      Go to Github
+    </a>
+    <a
+      class="font-bold hover:underline text-xl flex gap-2 items-center"
+      href="https://www.npmjs.com/package/@salvadorsru/card-deck"
+      target="_blank"
+    >
+      <NPMIcon />
+      Go to NPM
+    </a>
+  </div>
 
-			<h3>Event Detail Properties:</h3>
-
-			<ul>
-				<li>
-					goRight (boolean): true if the card was discarded to the
-					right, false if to the left.
-				</li>
-				<li>
-					goDown (boolean): true if the card was discarded downward,
-					false if upward.
-				</li>
-				<li>
-					card (HTMLElement): A reference to the removed card's HTML
-					element.
-				</li>
-			</ul>
-
-			<p>
-				The event's detail includes the direction in which the card was
-				removed and a full reference to the HTML element.
-			</p>
-			<p>You must define a card's <em>width</em> and <em>height</em></p>
-			<div
-				class="shadow p-4 bg-black border-[1px] border-stone-900 rounded-xl"
-			>
-				<span
-					class="block"
-					set:text={'<card-desk style="--card-width: 220px; --card-height: 285px">'}
-				/>
-				<span
-					class="block pl-6"
-					set:text={"<div></div> // Card Container"}
-				/>
-				<span
-					class="block pl-6"
-					set:text={"<div></div> // Card Container"}
-				/>
-				<span class="block" set:text={"</card-desk>"} />
-			</div>
-
-			<hr />
-
-			<section class="grid sm:grid-cols-2 gap-4">
-				<h2 class="mt-0 col-span-full">CSS Variables</h2>
-				<div>
-					<h4 class="mt-0">Card</h4>
-					<ul class="list-none italic">
-						<li>--card-width</li>
-						<li>--card-height</li>
-						<li>--card-aspect-ratio</li>
-					</ul>
-				</div>
-				<div>
-					<h4 class="mt-0">Attributes</h4>
-					<ul class="list-none italic">
-						<li>data-threshold</li>
-					</ul>
-				</div>
-				<div>
-					<h4 class="mt-0">Animations</h4>
-					<ul class="list-none italic">
-						<li>--card-go-left</li>
-						<li>--card-go-right</li>
-						<li>--transition-time</li>
-						<li>--transition-opacity</li>
-						<li>--transition-rotation</li>
-					</ul>
-				</div>
-				<div>
-					<h4 class="mt-0">Classes applied during dragging</h4>
-					<ul class="list-none italic">
-						<li>.dragged</li>
-						<li>.to-left</li>
-						<li>.to-right</li>
-						<li>.to-top</li>
-						<li>.to-bottom</li>
-					</ul>
-				</div>
-			</section>
-		</TextBox>
-	</section>
+  <section class="mt-12 w-full max-w-[90%] md:max-w-full mx-auto">
+    <TextBox>
+      <Documentation />
+    </TextBox>
+  </section>
 </Layout>
 
+<script>
+  import * as Emulate from "@/public/js/emulate.min.mjs";
+  // @ts-ignore
+  window.Emulate = Emulate;
+</script>
+
 <style is:inline>
-	card-deck > div {
-		display: grid;
-		place-content: center;
-		place-items: center;
-	}
+  card-deck > div {
+    display: grid;
+    place-content: center;
+    place-items: center;
+  }
 
-	card-deck .to-left::after {
-		content: "DISCARD";
-		font-weight: bold;
-		position: absolute;
-		display: flex;
-		place-content: center;
-		place-items: center;
-		margin: auto;
-		inset: 0;
-		font-size: 2rem;
-		background-color: rgb(255 0 0 / 0.85);
-		padding: 10px;
-		border-radius: 10px;
-	}
+  card-deck .to-left::after {
+    content: "DISCARD";
+    font-weight: bold;
+    position: absolute;
+    display: flex;
+    place-content: center;
+    place-items: center;
+    margin: auto;
+    inset: 0;
+    font-size: 2rem;
+    background-color: rgb(255 0 0 / 0.85);
+    padding: 10px;
+    border-radius: 10px;
+  }
 
-	card-deck:has(.to-right) {
-		--card-border: rgb(0 255 0 / 1);
-	}
+  card-deck:has(.to-right) {
+    --card-border: rgb(0 255 0 / 1);
+  }
 
-	card-deck .to-right::after {
-		content: "GO";
-		font-weight: bold;
-		position: absolute;
-		display: flex;
-		place-content: center;
-		place-items: center;
-		margin: auto;
-		inset: 0;
-		font-size: 2rem;
-		background-color: rgb(0 255 0 / 0.85);
-		padding: 10px;
-		border-radius: 10px;
-	}
+  card-deck .to-right::after {
+    content: "GO";
+    font-weight: bold;
+    position: absolute;
+    display: flex;
+    place-content: center;
+    place-items: center;
+    margin: auto;
+    inset: 0;
+    font-size: 2rem;
+    background-color: rgb(0 255 0 / 0.85);
+    padding: 10px;
+    border-radius: 10px;
+  }
 </style>

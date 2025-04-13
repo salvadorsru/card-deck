@@ -3,23 +3,23 @@ import "@/public/css/style.min.css";
 ---
 
 <card-deck>
-    <slot />
+  <slot />
 </card-deck>
 
 <script>
-    import "@/public/js/index.min.js";
+  import "@/public/js/index.min.js";
 </script>
 
 <style>
-    card-deck {
-        --card-width: 220px;
-        --card-height: 285px;
-    }
+  card-deck {
+    --card-width: 220px;
+    --card-height: 285px;
+  }
 </style>
 
 <style is:inline>
-    card-deck > :last-child {
-        border-radius: 10px;
-        border: 1px solid var(--card-border, red) !important;
-    }
+  card-deck > :last-child {
+    border-radius: 10px;
+    border: 1px solid var(--card-border, gray) !important;
+  }
 </style>
