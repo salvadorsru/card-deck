@@ -1,6 +1,6 @@
 {
   "name": "@salvadorsru/card-deck",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "author": "@salvadorsru",
   "repository": {
     "type": "git",
@@ -16,6 +16,7 @@
   "description": "Simple Web Component that animates card swipes similar to Tinder's effect.",
   "files": [
     "dist/index.min.js",
+    "dist/emulate.min.js",
     "dist/style.min.css"
   ],
   "homepage": "https://github.com/salvadorsru/card-deck#readme",
@@ -33,10 +34,13 @@
   "scripts": {
     "dry:publish": "node ./src/build.js && npm pack --dry-run",
     "publish": "node ./src/build.js && npm publish",
-    "dev": "node --watch-path=./src/component/index.js --watch-path=./src/component/style.css --watch ./src/build.js",
+    "dev": "node --watch-path=./src/component/index.js --watch-path=./src/component/emulate.js --watch-path=./src/component/style.css --watch ./src/build.js",
     "build": "node ./src/build.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "style": "dist/style.min.css",
-  "type": "module"
+  "type": "module",
+  "exports": {
+    "./emulate": "./dist/emulate.min.js"
+  }
 }
