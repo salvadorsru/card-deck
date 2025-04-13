@@ -16,7 +16,7 @@ card-deck>* {
     position: absolute;
     inset: 0;
     user-select: none;
-    cursor: pointer;
+    cursor: grab;
 }
 
 card-deck .go-left {

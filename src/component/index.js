@@ -24,10 +24,7 @@ class CardDeck extends HTMLElement {
     startDrag(event) {
         event.stopPropagation();
         event.preventDefault();
-        if (this.isAnimating) return;
-
-        this.$actualCard = this.lastElementChild;
-        if (!this.$actualCard) return;
+        if (this.isAnimating || !(this.$actualCard = this.lastElementChild)) return;
 
         this.setCoords(event);
         this.addListeners();
@@ -56,7 +53,7 @@ class CardDeck extends HTMLElement {
         this.pullDeltaX = this.getCoord(event, 'X') - this.startX;
         this.pullDeltaY = this.getCoord(event, 'Y') - this.startY;
 
-        if (this.pullDeltaX === 0 && this.pullDeltaY === 0) return;
+        if (!this.pullDeltaX && !this.pullDeltaY) return;
 
         this.isAnimating = true;
         const deg = this.pullDeltaX / 14;
@@ -68,7 +65,6 @@ class CardDeck extends HTMLElement {
         this.$actualCard.classList.toggle('to-right', this.pullDeltaX >= 0);
         this.$actualCard.classList.toggle('to-top', this.pullDeltaY <= 0);
         this.$actualCard.classList.toggle('to-bottom', this.pullDeltaY >= 0);
-
         this.$actualCard.style.transform = `translateX(${this.pullDeltaX}px) translateY(${this.pullDeltaY}px) rotate(${deg}deg)`;
         this.$actualCard.style.cursor = "grabbing";
     }
@@ -84,11 +80,7 @@ class CardDeck extends HTMLElement {
 
         if (!this.$actualCard) return;
 
-        if (decisionMade) {
-            this.applyCardDecision();
-        } else {
-            this.resetCardPosition();
-        }
+            this[decisionMade ? 'applyCardDecision' : 'resetCardPosition']();
 
         this.endCardAnimation();
     }
@@ -105,11 +97,14 @@ class CardDeck extends HTMLElement {
         const goDown = this.pullDeltaY >= 0;
 
         this.$actualCard.classList.add(goRight ? "go-right" : "go-left", goDown ? "go-down" : "go-up");
+                
+        const discard = (name) => this.dispatchEvent(new CustomEvent(name, { bubbles: true, detail: { goRight, goDown, card: this.$actualCard } }));
 
-        this.dispatchEvent(new CustomEvent("discard", { bubbles: true, detail: { goRight, goDown, card: this.$actualCard } }));
+        discard("discard");
 
         this.$actualCard.addEventListener("transitionend", () => {
             this.$actualCard?.remove();
+            discard("cardRemoved");
         });
     }
 
