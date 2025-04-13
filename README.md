@@ -7,8 +7,8 @@
 To use the component, ensure you include the CSS from the `dist` folder, as the package only includes the Web Component JavaScript when imported into your project.
 
 ```html
-<link rel="stylesheet" href="@salvador/card-deck/dist/style.min.css" />
-<script type="module" src="@salvador/card-deck/index.min.js"></script>
+<link rel="stylesheet" href="@salvadorsru/card-deck/dist/style.min.css" />
+<script type="module" src="@salvadorsru/card-deck/index.min.js"></script>
 ```
 
 Alternatively, you can import the package directly in your JavaScript/TypeScript files:
