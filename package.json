@@ -1,6 +1,6 @@
 {
   "name": "@salvadorsru/card-deck",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "@salvadorsru",
   "repository": {
     "type": "git",
@@ -41,6 +41,8 @@
   "style": "dist/style.min.css",
   "type": "module",
   "exports": {
-    "./emulate": "./dist/emulate.min.js"
+    ".": "./dist/index.min.js",
+    "./emulate": "./dist/emulate.min.js",
+    "./style": "./dist/style.min.css"
   }
 }
