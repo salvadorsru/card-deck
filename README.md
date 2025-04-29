@@ -66,7 +66,7 @@ You can programmatically control the behavior of a `<card-deck>` using the follo
 ### Include via HTML
 
 ```html
-<script type="module" src="@salvador/card-deck/emulate.min.js"></script>
+<script type="module" src="@salvadorsru/card-deck/emulate.min.js"></script>
 ```
 
 Or import via JavaScript
